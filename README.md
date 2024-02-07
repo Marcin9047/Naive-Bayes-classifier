@@ -39,7 +39,7 @@ Test is mede on the `iris.data` dataset from [dataset page](https://archive.ics.
 
 ### Accuracy score based on training sample size
 
-![Iris results](./iris.acc.png)
+![Iris results](./iris_acc.png)
 
 
 	
