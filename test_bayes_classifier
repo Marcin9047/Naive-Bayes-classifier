@@ -1,0 +1,52 @@
+from naive_bayes_clasifier import Bayes_clasifier
+
+# import seaborn as sns
+# import pandas as pd
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+
+
+def read_file(filename):
+    file = open(filename, "r")
+    x_vals = []
+    y_vals = []
+    while True:
+        line = file.readline()
+        if not line or line == "\n":
+            break
+        line = list(line.split(","))
+        x_val = [float(x) for x in line[:4]]
+        x_vals.append(x_val)
+        y_vals.append(line[-1][:-1])
+    file.close()
+    return x_vals, y_vals
+
+
+def acuracy_plot(X_full, Y_full, label):
+    y_vals = []
+    x_vals = []
+    for test_size1 in range(1, 15):
+        test_size1 = test_size1 / 30
+        x_vals.append(1 - test_size1)
+        x_train, X_test, y_train, y_test = train_test_split(
+            X_full, Y_full, test_size=test_size1, random_state=130
+        )
+        BC1 = Bayes_clasifier()
+        BC1.train(x_train, y_train)
+
+        y_pred = []
+        for one in X_test:
+            y_pred.append(BC1.predict(one))
+        y_vals.append(accuracy_score(y_test, y_pred))
+    plt.plot(x_vals, y_vals, label=label1)
+
+
+label1 = "Iris data"
+X_full, Y_full = read_file("iris.data")
+acuracy_plot(X_full, Y_full, label1)
+plt.title("Accuracy of prediction")
+plt.xlabel("Train size")
+plt.ylabel("Accuracy score")
+plt.legend()
+plt.show()
