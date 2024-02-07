@@ -13,6 +13,8 @@ File `naive_bayes_classifier.py` contains body of basic classes.
 
 File `test_bayes_classifier.py` contains functions which can be used for testing the results.
 
+File `bayes_sprawozdanie.pdf` contains repot of my experiments on this implementation writen in Polish.
+
 ### possible_class
 
 It is the class used for every class found in dataset.
